@@ -13,5 +13,8 @@
   "devDependencies": {
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "crypto-js": "^4.0.0"
   }
 }
