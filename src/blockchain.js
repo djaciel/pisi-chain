@@ -12,7 +12,7 @@ class Blockchain {
     return block;
   }
 
-  isValid(chain) {
+  isValidChain(chain) {
     if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) {
       return false;
     }
