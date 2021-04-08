@@ -37,4 +37,18 @@ describe('Blockchain', () => {
 
     expect(blockchain.isValidChain(blockchain2.chain)).toBe(false);
   });
+
+  test('Replaces the chain with a valid chain', () => {
+    blockchain2.addBlock('goo');
+    blockchain.replaceChain(blockchain2.chain);
+
+    expect(blockchain.chain).toEqual(blockchain2.chain);
+  });
+
+  test('Does not replace the chain with one of less than or equal to length', () => {
+    blockchain.addBlock('foo');
+    blockchain.replaceChain(blockchain2.chain);
+
+    expect(blockchain.chain).not.toEqual(blockchain2.chain);
+  });
 });
