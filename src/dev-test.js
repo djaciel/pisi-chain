@@ -1,3 +1,7 @@
+const Transaction = require('./wallet/transaction');
 const Wallet = require('./wallet');
-const wallet = new Wallet();
-console.log(wallet.toString());
+wallet = new Wallet();
+amount = 50;
+recipient = 'r3c1p13nt';
+transaction = Transaction.newTransaction(wallet, recipient, amount);
+console.log(transaction);
