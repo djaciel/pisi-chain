@@ -28,6 +28,15 @@ describe('Transaction', () => {
     expect(transaction.input.amount).toEqual(wallet.balance);
   });
 
+  test('Validates a valid transaction', () => {
+    expect(Transaction.verifyTransaction(transaction)).toBe(true);
+  });
+
+  test('Validates a corrupt transaction', () => {
+    transaction.outputs[0].amount = 50000;
+    expect(Transaction.verifyTransaction(transaction)).toBe(false);
+  });
+
   describe('Transacting with an amount that exceeds the balance', () => {
     beforeEach(() => {
       amount = 50000;
