@@ -38,6 +38,7 @@ app.post('/transact', (req, res) => {
     amount,
     transactionPool
   );
+  p2pServer.broadcastTransaction(transaction);
   res.redirect('/transactions');
 });
 
