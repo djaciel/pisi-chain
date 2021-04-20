@@ -1,11 +1,15 @@
 const express = require('express');
 const Blockchain = require('../blockchain');
 const P2pServer = require('./p2p-server');
+const Wallet = require('../wallet');
+const TransactionPool = require('../wallet/transaction-pool');
 
 const HTTP_PORT = process.env.HTTP_PORT || 3001;
 
 const app = express();
 const blockchain = new Blockchain();
+const wallet = new Wallet();
+const transactionPool = new TransactionPool();
 const p2pServer = new P2pServer(blockchain);
 
 app.use(express.json());
@@ -21,6 +25,10 @@ app.post('/mine', (req, res) => {
   p2pServer.syncChains();
 
   res.redirect('/blocks');
+});
+
+app.get('/transactions', (req, res) => {
+  res.json(transactionPool.transactions);
 });
 
 app.listen(HTTP_PORT, () => {
