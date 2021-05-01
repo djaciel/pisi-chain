@@ -1,6 +1,7 @@
 const TransactionPool = require('../wallet/transaction-pool');
 const Transaction = require('../wallet/transaction');
 const Wallet = require('../wallet');
+const Blockchain = require('../blockchain');
 
 describe('TransactionPool', () => {
   let transactionPool, wallet, transaction;
@@ -8,7 +9,13 @@ describe('TransactionPool', () => {
   beforeEach(() => {
     transactionPool = new TransactionPool();
     wallet = new Wallet();
-    transaction = wallet.createTransaction('r4nd-4ddr355', 30, transactionPool);
+    blockchain = new Blockchain();
+    transaction = wallet.createTransaction(
+      'r4nd-4ddr355',
+      30,
+      blockchain,
+      transactionPool
+    );
   });
 
   test('Adds a transaction to the pool', () => {
@@ -44,6 +51,7 @@ describe('TransactionPool', () => {
         transaction = wallet.createTransaction(
           'r4nd-4ddr355',
           30,
+          blockchain,
           transactionPool
         );
 
